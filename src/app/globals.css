@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap");
+@import "tailwindcss";
+
+/* dark mode */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #fafafa;
+  --foreground: #343434;
+  --primary: #9d5cde;
+  --secondary: #474747;
+  --accent: #6b46c1;
+  --muted: #959197ff;
+  --success: #10b981;
+  --warning: #f59e0b;
+  --danger: #ef4444;
+  --info: #3b82f6;
+  --surface: #ffffff;
+  --border: #e5e7eb;
+}
+
+:root.dark {
+  --background: #27242bff;
+  --foreground: #dadada;
+  --primary: #9d5cde;
+  --secondary: #fafafa;
+  --accent: #8b5cf6;
+  --muted: #b2abb8ff;
+  --success: #059669;
+  --warning: #d97706;
+  --danger: #dc2626;
+  --info: #2563eb;
+  --surface: #1f1b21;
+  --border: #3a3543ff;
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-secondary: var(--secondary);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-info: var(--info);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --font-primary: "Rubik", sans-serif;
+  --font-heading: "Merriweather", serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-primary);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+h1,
+h2 {
+  font-family: var(--font-heading);
+}
