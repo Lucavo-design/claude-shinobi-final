@@ -1,11 +1,23 @@
 "use client";
+import { useState } from "react";
 import Button from "@/components/ui/Button/Button";
 import Avatar from "@/components/ui/Avatar/Avatar";
 import Card from "@/components/ui/Card/Card";
 import Icon from "@/components/ui/Icon/Icon";
+import Modal from "@/components/ui/Modal/Modal";
 import { Star, Rocket, Gem, Target, Zap, Check, AlertTriangle, Flame, Home, Settings, ThumbsUp, Bell, Trash2, FileText, Camera, Paperclip, BarChart3, Link2, Circle } from "lucide-react";
 
 export default function Preview() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [modalVariant, setModalVariant] = useState<'primary' | 'secondary' | 'success' | 'danger' | 'warning'>('primary');
+  const [modalSize, setModalSize] = useState<'sm' | 'md' | 'lg'>('md');
+
+  const openModal = (variant: typeof modalVariant, size: typeof modalSize = 'md') => {
+    setModalVariant(variant);
+    setModalSize(size);
+    setIsModalOpen(true);
+  };
+
   return (
     <div style={{ padding: '2rem', display: 'flex', flexDirection: 'column', gap: '2rem', alignItems: 'flex-start' }}>
       <section>
@@ -393,6 +405,97 @@ export default function Preview() {
           </div>
         </div>
       </section>
+
+      <section style={{ marginTop: '3rem' }}>
+        <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Modal Component</h2>
+        <p style={{ marginBottom: '1.5rem', maxWidth: '500px' }}>
+          Clean, modern modal with semi-transparent backdrop, keyboard navigation, and multiple variants.
+        </p>
+
+        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Variants</h3>
+        <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
+          <Button variant="primary" onClick={() => openModal('primary')}>
+            Primary Modal
+          </Button>
+          <Button variant="secondary" onClick={() => openModal('secondary')}>
+            Secondary Modal
+          </Button>
+          <Button variant="success" onClick={() => openModal('success')}>
+            Success Modal
+          </Button>
+          <Button variant="warning" onClick={() => openModal('warning')}>
+            Warning Modal
+          </Button>
+          <Button variant="danger" onClick={() => openModal('danger')}>
+            Danger Modal
+          </Button>
+        </div>
+
+        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Sizes</h3>
+        <div style={{ display: 'flex', gap: '1rem', marginBottom: '2rem', flexWrap: 'wrap' }}>
+          <Button onClick={() => openModal('primary', 'sm')}>
+            Small Modal
+          </Button>
+          <Button onClick={() => openModal('primary', 'md')}>
+            Medium Modal
+          </Button>
+          <Button onClick={() => openModal('primary', 'lg')}>
+            Large Modal
+          </Button>
+        </div>
+
+        <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>Features</h3>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1rem', marginBottom: '2rem' }}>
+          <Card variant="primary" size="sm">
+            <h4 style={{ margin: '0 0 0.5rem 0', fontSize: '0.9rem' }}>✨ Semi-transparent backdrop</h4>
+            <p style={{ margin: '0', fontSize: '0.8rem' }}>Beautiful blur effect</p>
+          </Card>
+          <Card variant="secondary" size="sm">
+            <h4 style={{ margin: '0 0 0.5rem 0', fontSize: '0.9rem' }}>⌨️ Keyboard navigation</h4>
+            <p style={{ margin: '0', fontSize: '0.8rem' }}>Close with Escape key</p>
+          </Card>
+          <Card variant="success" size="sm">
+            <h4 style={{ margin: '0 0 0.5rem 0', fontSize: '0.9rem' }}>🎯 Click outside to close</h4>
+            <p style={{ margin: '0', fontSize: '0.8rem' }}>Intuitive interaction</p>
+          </Card>
+          <Card variant="warning" size="sm">
+            <h4 style={{ margin: '0 0 0.5rem 0', fontSize: '0.9rem' }}>📱 Responsive design</h4>
+            <p style={{ margin: '0', fontSize: '0.8rem' }}>Works on all screen sizes</p>
+          </Card>
+        </div>
+      </section>
+
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        variant={modalVariant}
+        size={modalSize}
+        title={`${modalVariant.charAt(0).toUpperCase() + modalVariant.slice(1)} Modal`}
+      >
+        <div style={{ textAlign: 'center', padding: '1rem 0' }}>
+          <div style={{ fontSize: '3rem', marginBottom: '1rem' }}>
+            {modalVariant === 'primary' && '🎯'}
+            {modalVariant === 'secondary' && '⚡'}
+            {modalVariant === 'success' && '✅'}
+            {modalVariant === 'warning' && '⚠️'}
+            {modalVariant === 'danger' && '🚨'}
+          </div>
+          <h3 style={{ margin: '0 0 1rem 0', fontSize: '1.5rem' }}>
+            This is a {modalVariant} modal
+          </h3>
+          <p style={{ margin: '0 0 1.5rem 0', color: 'var(--muted)' }}>
+            You can close this modal by clicking the X button, pressing the Escape key, or clicking outside the modal.
+          </p>
+          <div style={{ display: 'flex', gap: '1rem', justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Button variant={modalVariant} onClick={() => setIsModalOpen(false)}>
+              Confirm
+            </Button>
+            <Button variant="secondary" onClick={() => setIsModalOpen(false)}>
+              Cancel
+            </Button>
+          </div>
+        </div>
+      </Modal>
 
       <section style={{ marginTop: '3rem' }}>
         <h2 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Typography Hierarchy</h2>
