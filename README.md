@@ -9,6 +9,7 @@ This project was bootstrapped with [`create-next-app`](https://nextjs.org/docs/a
 This project serves as a practical example for learning Claude Code capabilities:
 
 ### Core Features
+
 - **AI-Assisted Development**: Use Claude Code to make intelligent edits, refactor code, and add new features
 - **CLAUDE.md Files**: Learn to create and maintain CLAUDE.md files for project context and memory
 - **GitHub Integration**: Practice using Claude Code with GitHub workflows, PR reviews, and issue management
@@ -18,6 +19,7 @@ This project serves as a practical example for learning Claude Code capabilities
 - **MCP (Model Context Protocol)**: Integrate with MCP servers for extended functionality
 
 ### Learning Objectives
+
 - Understand how to work collaboratively with AI on real projects
 - Master Claude Code's file editing and code generation capabilities
 - Learn best practices for maintaining AI context in larger codebases
@@ -39,3 +41,27 @@ bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## Final Thoughts
+
+### Check the Code Yourself
+
+- AI Can make mistakes.
+- Checking the code keeps you in the loop.
+
+### Context is Key
+
+- Be smart about what context you provide.
+- Keep it relevant & the history lean where possible.
+- Use /clear and /compact commands.
+
+### Don't rely on AI to do EVERYTHING
+
+- It will make you lazy!
+- You'll find it harder to learn new skills.
+
+### AI in Coding will Bring More Opportunity
+
+- More areas to specialize - MCP, Agentic tools, Custom integrations, etc
+- There will still be a demand for good programmers.
+- Learning to code is more important than ever!
