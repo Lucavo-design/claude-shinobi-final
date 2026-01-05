@@ -32,11 +32,11 @@ async function getSinglePost(slug: string): Promise<BlogPost | null> {
   return json.data.blogPost
 }
 
-type PageProps = {
+export default async function BlogPostPage({
+  params,
+}: {
   params: Promise<{ slug: string }>
-}
-
-export default async function BlogPostPage({ params }: PageProps) {
+}) {
   const { slug } = await params
   const post = await getSinglePost(slug)
 
