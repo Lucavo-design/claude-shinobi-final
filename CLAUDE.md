@@ -10,6 +10,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - `npm run lint` - Run Next.js linting
 - `npm run test` - Run Vitest tests
 - `npm run test:ui` - Run tests with UI interface
+- `npm run test -- src/path/to/test.test.tsx` - Run a single test file
+
+## Custom Slash Commands
+
+- `/merged` - Clean up after PR merge by switching to main, pulling changes, and deleting the merged branch
 
 ## Architecture Overview
 
@@ -37,7 +42,7 @@ src/
 │   ├── ui/Button/         # Button component with variants
 │   ├── BlogSidebar.tsx    # Blog page sidebar
 │   └── DarkModeToggle.tsx # Theme switching component
-├── hooks/                 # Reusable hooks
+├── hooks/                 # Custom React hooks (export via index.ts)
 └── lib/                   # Utility functions and types
     ├── queries.ts         # GraphQL queries for blog data
     ├── types.ts           # TypeScript type definitions
@@ -47,7 +52,7 @@ src/
 ### Data Architecture
 
 - **External CMS**: Uses Hygraph (GraphQL CMS) for blog content
-- **Environment Variables**: Requires `HYGRAPH_ENDPOINT` for GraphQL API
+- **Environment Variables**: `HYGRAPH_ENDPOINT` for GraphQL API (optional - falls back to mock data)
 - **Data Fetching**: Server-side rendering with 1-hour revalidation
 - **Content Security**: HTML content is sanitized using DOMPurify with strict allowlists
 
@@ -73,6 +78,5 @@ src/
 - Component testing follows React Testing Library patterns
 - HTML sanitization is critical for security when displaying CMS content
 
-- when making new page components, always add a link to that page in the header. Only do this for page components, not UI or other drop-in components.
-
+- When making new page components, always add a link to that page in the header. Only do this for page components, not UI or other drop-in components.
 - Use Context7 to check up-to-date docs when needed for implementing new libraries or frameworks, or adding features using them.

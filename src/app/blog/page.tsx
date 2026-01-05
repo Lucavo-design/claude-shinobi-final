@@ -4,8 +4,47 @@ import Link from 'next/link'
 import BlogSidebar from '@/components/BlogSidebar'
 import Avatar from '@/components/ui/Avatar/Avatar'
 
+// Mock data for when Hygraph endpoint is not configured
+const mockPosts: BlogPost[] = [
+  {
+    id: '1',
+    blogTitle: 'Getting Started with Next.js 15',
+    blogPostSlug: 'getting-started-nextjs-15',
+    blogPostContent: {
+      html: '<p>Next.js 15 brings exciting new features including Turbopack for faster builds, improved server components, and better developer experience. Learn how to set up your first project and explore the new App Router.</p>'
+    },
+    createdAt: new Date().toISOString(),
+    createdBy: { name: 'Shinobi Dev' }
+  },
+  {
+    id: '2',
+    blogTitle: 'Mastering React Server Components',
+    blogPostSlug: 'mastering-react-server-components',
+    blogPostContent: {
+      html: '<p>Server Components allow you to render components on the server, reducing client-side JavaScript and improving performance. This guide covers best practices and common patterns.</p>'
+    },
+    createdAt: new Date(Date.now() - 86400000).toISOString(),
+    createdBy: { name: 'Shinobi Dev' }
+  },
+  {
+    id: '3',
+    blogTitle: 'Styling with Tailwind CSS v4',
+    blogPostSlug: 'styling-tailwind-css-v4',
+    blogPostContent: {
+      html: '<p>Tailwind CSS v4 introduces a new engine, native CSS variables, and improved performance. Discover how to leverage these features in your Next.js applications.</p>'
+    },
+    createdAt: new Date(Date.now() - 172800000).toISOString(),
+    createdBy: { name: 'Shinobi Dev' }
+  }
+]
+
 async function getPosts(): Promise<BlogPost[]> {
-  const response = await fetch(process.env.HYGRAPH_ENDPOINT!, {
+  // Return mock data if Hygraph endpoint is not configured
+  if (!process.env.HYGRAPH_ENDPOINT) {
+    return mockPosts
+  }
+
+  const response = await fetch(process.env.HYGRAPH_ENDPOINT, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -21,7 +60,7 @@ async function getPosts(): Promise<BlogPost[]> {
   }
 
   const json = await response.json()
-  
+
   if (json.errors) {
     throw new Error(`GraphQL errors: ${JSON.stringify(json.errors)}`)
   }
