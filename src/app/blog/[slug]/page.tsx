@@ -6,11 +6,6 @@ import Link from 'next/link'
 import Avatar from '@/components/ui/Avatar/Avatar'
 import styles from './BlogPost.module.css'
 
-type Props = {
-  params: Promise<{ slug: string }>
-  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>
-}
-
 async function getSinglePost(slug: string): Promise<BlogPost | null> {
   const response = await fetch(process.env.HYGRAPH_ENDPOINT!, {
     method: "POST",
@@ -37,7 +32,8 @@ async function getSinglePost(slug: string): Promise<BlogPost | null> {
   return json.data.blogPost
 }
 
-export default async function BlogPostPage({ params }: Props) {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export default async function BlogPostPage({ params }: any) {
   const { slug } = await params
   const post = await getSinglePost(slug)
 
