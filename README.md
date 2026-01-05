@@ -26,6 +26,14 @@ This project serves as a practical example for learning Claude Code capabilities
 - Explore automation possibilities with GitHub Actions and Claude Code
 - Practice iterative development with AI assistance
 
+## Test Message Inbox
+
+Quick URL for mobile-to-desktop message testing:
+
+```
+localhost:3001/test-messages
+```
+
 ## Running the app
 
 First, run the development server:
