@@ -33,6 +33,9 @@ export default function RootLayout({
               <Link href="/about" className="text-foreground hover:text-accent transition-colors">
                 About
               </Link>
+              <Link href="/test-messages" className="text-foreground hover:text-accent transition-colors">
+                Inbox
+              </Link>
             </nav>
           </div>
           <DarkModeToggle />
