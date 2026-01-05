@@ -32,12 +32,13 @@ async function getSinglePost(slug: string): Promise<BlogPost | null> {
   return json.data.blogPost
 }
 
-export default async function BlogPostPage({ 
-  params 
-}: { 
-  params: { slug: string } 
+export default async function BlogPostPage({
+  params
+}: {
+  params: Promise<{ slug: string }>
 }) {
-  const post = await getSinglePost(params.slug)
+  const { slug } = await params
+  const post = await getSinglePost(slug)
 
   if (!post) {
     notFound()

@@ -7,8 +7,21 @@ interface Message {
   timestamp: string;
 }
 
-const messages: Message[] = [];
-let nextId = 1;
+// Use globalThis to persist across hot reloads in dev mode
+const globalStore = globalThis as typeof globalThis & {
+  _testMessages?: Message[];
+  _testMessageNextId?: number;
+};
+
+if (!globalStore._testMessages) {
+  globalStore._testMessages = [];
+}
+if (!globalStore._testMessageNextId) {
+  globalStore._testMessageNextId = 1;
+}
+
+const messages = globalStore._testMessages;
+const getNextId = () => globalStore._testMessageNextId!++;
 
 // GET - retrieve all messages
 export async function GET() {
@@ -29,7 +42,7 @@ export async function POST(request: NextRequest) {
     }
 
     const message: Message = {
-      id: nextId++,
+      id: getNextId(),
       text: text.trim(),
       timestamp: new Date().toISOString(),
     };

@@ -103,7 +103,7 @@ export default function TestMessagesPage() {
         <ol className="list-decimal list-inside space-y-1 text-muted">
           <li>Find your Mac&apos;s IP address: run <code className="bg-background px-1 rounded">ipconfig getifaddr en0</code> in Terminal</li>
           <li>Make sure your phone is on the same WiFi network</li>
-          <li>On your phone browser, go to <code className="bg-background px-1 rounded">http://YOUR_MAC_IP:3000/test-messages</code></li>
+          <li>On your phone browser, go to <code className="bg-background px-1 rounded">http://YOUR_MAC_IP:3001/test-messages</code></li>
           <li>Send a message from your phone - it will appear here!</li>
         </ol>
       </div>
