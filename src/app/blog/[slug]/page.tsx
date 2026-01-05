@@ -32,8 +32,11 @@ async function getSinglePost(slug: string): Promise<BlogPost | null> {
   return json.data.blogPost
 }
 
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-export default async function BlogPostPage({ params }: any) {
+type PageProps = {
+  params: Promise<{ slug: string }>
+}
+
+export default async function BlogPostPage({ params }: PageProps) {
   const { slug } = await params
   const post = await getSinglePost(slug)
 
